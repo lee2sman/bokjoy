@@ -86,6 +86,9 @@ function mousePressed() {
     started = true;
     //bg.play();
   }
+  if (started){ //plays sound on click (and on "touch")
+    trigger(floor(random(5)));
+  }
 }
 function keyPressed() {
   if (!started) {
