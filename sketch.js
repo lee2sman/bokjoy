@@ -1,10 +1,10 @@
 // DJBokChoy instrument by Lee Tusman and Amelia Marzec and Rebecca Hui
 // keys to hit: up, down, left, right, and space
+// also works with mouse click or screen touch (picks a random sample)
 
 // 03_Hat_Med_Cymbals_&_Snares.wav by Theriavirra | License: Attribution 3.0
 // CHEAP NASTY SNARE 06.wav by sandyrb | License: Attribution 4.0
 let sample = [];
-let bg;
 let started = false;
 let startedScreen = false;
 let veggie = [];
@@ -15,12 +15,6 @@ let screen, whichScreen = 0, scrollDir = -1;
 
 function preload() {
   //sfx
-  //testing samples
-/*  sample[0] = loadSound("assets/snd/bokchoy.mp3");
-  sample[1] = loadSound("assets/snd/fishballs.mp3");
-  sample[2] = loadSound("assets/snd/eggs.mp3");
-  sample[3] = loadSound("assets/snd/lotus.mp3");
-  sample[4] = loadSound("assets/snd/mala.mp3"); */
   sample[0] = loadSound("assets/snd/kick.wav");
   sample[1] = loadSound("assets/snd/bass.wav");
   sample[2] = loadSound("assets/snd/snare.wav");
@@ -28,7 +22,6 @@ function preload() {
   sample[4] = loadSound("assets/snd/hihat.wav"); 
  
   //soundtrack
-  bg = loadSound("assets/snd/background.mp3");
   //fruit/veggie prints
   veggie[0] = loadImage("assets/img/BOKCHOY1_72.png");
   veggie[1] = loadImage("assets/img/BOKCHOY2_72.png");
@@ -84,7 +77,6 @@ function mousePressed() {
   startedScreen = true;
   if (!started) {
     started = true;
-    //bg.play();
   }
   if (started){ //plays sound on click (and on "touch")
     trigger(floor(random(5)));
@@ -93,7 +85,6 @@ function mousePressed() {
 function keyPressed() {
   if (!started) {
     started = true;
-    //bg.play();
   }
   if (keyCode === LEFT_ARROW) {
     trigger(0);
@@ -127,7 +118,7 @@ function trigger(veg){
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
-// bokJoy class
+
 class BokJoy {
   constructor(_img) {
     this.x = random(width);
